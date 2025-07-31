@@ -5,19 +5,23 @@ use atspi::{
 		object::StateChangedEvent, DBusInterface, DBusMatchRule, DBusMember,
 		DBusProperties, MessageConversion, RegistryEventString,
 	},
-	AtspiError, EventProperties, EventTypeProperties, State as AtspiState,
+	AtspiError, Event, EventProperties, EventTypeProperties, State as AtspiState,
 };
-use derived_deref::{Deref, DerefMut};
-use refinement::Predicate;
 use zbus::{names::UniqueName, zvariant::ObjectPath};
+
+use crate::tower::Predicate;
 
 pub type Focused = StateChanged<StateFocused, True>;
 
-#[derive(Debug, Default, Clone, Deref, DerefMut)]
+#[derive(Debug, Default, Clone)]
 pub struct StateChanged<S, E> {
-	#[target]
 	ev: StateChangedEvent,
 	_marker: PhantomData<(S, E)>,
+}
+impl<S, E> From<StateChanged<S, E>> for Event {
+	fn from(sc: StateChanged<S, E>) -> Event {
+		sc.ev.into()
+	}
 }
 impl<S, E> EventProperties for StateChanged<S, E> {
 	fn sender(&self) -> UniqueName<'_> {

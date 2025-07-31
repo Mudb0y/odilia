@@ -31,33 +31,31 @@ pre-release-hook = ["cargo", "fmt"]
 dependent-version = "upgrade"
 
 [workspace.dependencies]
-atspi = { version = "0.27.0", git = "https://github.com/odilia-app/atspi", branch = "no-default-features-common" }
+atspi = { version = "0.27.0" }
 config = { version = "0.15.11", default-features = false, features = ["toml"] }
-futures-concurrency = { version = "7.6.1", default-features = false }
+futures-concurrency = { version = "7.6.3", default-features = false, features = ["alloc"] }
 futures-lite = { version = "2.6.0", default-features = false }
-futures-util = { version = "0.3.31", default-features = false }
+futures-util = { version = "0.3.31", default-features = false, features = ["alloc", "async-await-macro"] }
 async-net = { version = "2.0", default-features = false }
-async-io = { version = "2.0", default-features = false }
-async-channel = { version = "2.0", default-features = false }
-async-fs = { version = "2.0", default-features = false }
+async-io = { version = "2.4.1", default-features = false }
+async-channel = { version = "2.5", default-features = false }
+async-fs = { version = "2.1.2", default-features = false }
 lexopt = { version = "0.3.1", default-features = false }
 odilia-common = { version = "0.3.0", path = "./common", features = ["async-io"] }
 odilia-cache = { version = "0.3.0", path = "./cache" }
 nix = { version = "0.30.0", default-features = false, features = ["user"] }
 pin-project-lite = { version = "0.2.16", default-features = false }
-serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
-serde = { version = "1.0", default-features = false, features = ["derive"] }
-thiserror = { version = "2.0", default-features = false }
-tokio = { version = "^1.22.0", default-features = false, features = ["macros", "rt"] }
+serde_json = { version = "1.0.100", default-features = false, features = ["alloc"] }
+serde = { version = "1.0.200", default-features = false, features = ["derive"] }
+thiserror = { version = "2.0", default-features = false, features = ["std"] }
+tokio = { version = "^1.44.2", default-features = false, features = ["macros", "rt"] }
 smol-cancellation-token = { version = "0.1", default-features = false }
 tower = { version = "0.5.2", default-features = false }
-tracing = { version = "^0.1.37", default-features = false }
-tracing-subscriber = { version = "0.3.16", default-features = false }
-tracing-error = "^0.2.0"
-tracing-tree = { version = "^0.4.0", default-features = false }
-zbus = { version = "5.1", default-features = false, features = ["async-io"] }
+tracing = { version = "^0.1.40", default-features = false, features = ["release_max_level_off"] }
+tracing-subscriber = { version = "0.3.16", default-features = false, features = ["ansi"] }
+zbus = { version = "5.8", default-features = false, features = ["async-io"] }
 serde_plain = "1.0.1"
-ssip = { version = "0.4", default-features = false }
-ssip-client-async = { version = "0.18.0", default-features = false, features = ["async-io"] }
+ssip = { version = "0.5", default-features = false }
+ssip-client-async = { version = "0.19.0", default-features = false, features = ["async-io"] }
 
 xdg = { version = "2.5.2", default-features = false }
